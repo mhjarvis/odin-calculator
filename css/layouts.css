@@ -1,0 +1,6 @@
+/* file contains styles that manage page layouts and segments, including grids */
+
+.container {
+    width: 35em;
+    height: 50em;
+}
