@@ -1,5 +1,18 @@
 /* file contains styles that manage page layouts and segments, including grids */
 
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 100vh;
+}
+
+h1 {
+    margin: -1em 0 1em 0;
+}
+
 .container {
     width: 35em;
     height: 50em;
