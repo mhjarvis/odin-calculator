@@ -16,9 +16,6 @@ function operate(num1, num2, operator) {
     }
 }
 
-
-
-
 // mathematical functions
 
 function add(num1, num2) {
