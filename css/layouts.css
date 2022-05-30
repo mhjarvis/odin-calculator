@@ -59,3 +59,13 @@ h1 {
     grid-column-end: 4;
     grid-row-start: 5;
 }
+
+/* main screen */
+
+.main-screen {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    padding-right: 20px;
+    font-size: 4em;
+}
