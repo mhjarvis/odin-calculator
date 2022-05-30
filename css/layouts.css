@@ -31,5 +31,30 @@ h1 {
     width: 450px;
     height: 450px;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+/* individul key manipulation */
+
+.ac-sign {
+    grid-column-start: ;
+}
+
+.equal-sign {
+    background-color: #2e86c0;
+    grid-row-start: 4;
+    grid-row-end: 6;
+    grid-column-start: 4;
+}
+
+.plus-sign {
+    grid-row-start: 2;
+    grid-row-end: 4;
+    grid-column-start: 4;
+}
+
+.num0 {
+    grid-column-start: 2;
+    grid-column-end: 4;
+    grid-row-start: 5;
 }
