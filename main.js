@@ -1,13 +1,35 @@
 
-const operators = document.querySelectorAll('.operator');
+let mainValue = '';
 
-operators.forEach(op => {
-    op.addEventListener('click', function handleClick(event) {
-        console.log('box clicked', event);
+// update display
+const display = document.querySelector('.main-screen');
+
+// add eventListeners to each number
+const operators = document.querySelectorAll('.number');
+
+operators.forEach(num => {
+    num.addEventListener('click', () => {
+        updateDisplay(num.value);
     });
 });
 
+// function to update display with number
+function updateDisplay(num) {
+    mainValue = mainValue + num;
+    display.textContent = mainValue;
+}
 
+// clear screen
+const ac = document.querySelector('.ac-sign');
+
+ac.addEventListener('click', () => {
+    clearAll();
+});
+
+function clearAll() {
+    mainValue = '';
+    display.textContent = 0;
+}
 
 // function completes operation on tw)o numbers
 
