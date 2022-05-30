@@ -1,7 +1,16 @@
 /* file contains colors used throughout page */
 
 .container {
-    background-color: gray;
+    background-color: rgb(224, 224, 224);
+}
+
+button {
+    background-color: rgb(224, 224, 224);
+    border: none;
+}
+
+button:hover {
+    background-color:rgb(193, 193, 193)
 }
 
 .main-screen {
@@ -10,4 +19,12 @@
 
 .key-wrapper {
     background-color: white;
+}
+
+.equal-sign {
+    background-color: #2e86c0;
+}
+
+.equal-sign:hover {
+    background-color: #33a0e9;
 }
