@@ -1,4 +1,15 @@
-// function completes operation on two numbers
+
+const operators = document.querySelectorAll('.operator');
+
+operators.forEach(op => {
+    op.addEventListener('click', function handleClick(event) {
+        console.log('box clicked', event);
+    });
+});
+
+
+
+// function completes operation on tw)o numbers
 
 function operate(num1, num2, operator) {
 

@@ -3,3 +3,7 @@
 h1 {
     font-size: 4em;
 }
+
+.number, .operator {
+    font-size: 2em;
+}

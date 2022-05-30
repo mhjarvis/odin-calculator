@@ -38,10 +38,6 @@ h1 {
 
 /* individul key manipulation */
 
-.operator {
-    font-size: 2em;
-}
-
 .equal-sign {
     grid-row-start: 4;
     grid-row-end: 6;
