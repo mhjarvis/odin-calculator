@@ -1,38 +1,55 @@
-
+let defaultValue = 0;
 let mainValue = '';
+let tempValue1 = '';
+let tempValue2 = '';
 
-// update display
-const display = document.querySelector('.main-screen');
+const getDisplay = document.querySelector('.main-screen');
+const getAllClearButton = document.querySelector('.ac-sign');
+const getAllNumbers = document.querySelectorAll('.number');
+const getAdditionButton = document.querySelector('.plus-sign');
+const getMinusButton = document.querySelector('minus-sign');
+const getMultiplicationButton = document.querySelector('multiply-sign');
+const getDivisionButton = document.querySelector('divide-sign');
+const getEqualButton = document.querySelector('equal-sign');
+const getDecimalButton = document.querySelector('decimal-sign');
 
-// add eventListeners to each number
-const operators = document.querySelectorAll('.number');
-
-operators.forEach(num => {
-    num.addEventListener('click', () => {
-        updateDisplay(num.value);
+(function() {
+    // Add even listeners to each number key
+    getAllNumbers.forEach(num => {
+        num.addEventListener('click', () => {
+            updateDisplay(num.value);
+        });
     });
-});
 
-// function to update display with number
-function updateDisplay(num) {
-    mainValue = mainValue + num;
-    display.textContent = mainValue;
-}
+    // Update display with number
+    function updateDisplay(num) {
+        mainValue = mainValue + num;
+        getDisplay.textContent = mainValue;
+    }
 
-// clear screen
-const ac = document.querySelector('.ac-sign');
+    updateAllButtons();
 
-ac.addEventListener('click', () => {
-    clearAll();
-});
+})();
 
-function clearAll() {
-    mainValue = '';
-    display.textContent = 0;
-}
+function updateAllButtons() {
+    getAdditionButton.addEventListener('click', () => {
+        clearAll();
+    });
 
-// function completes operation on tw)o numbers
+    getAllClearButton.addEventListener('click', () => {
+        clearAll();
+    });
 
+    function clearAll() {
+        mainValue = '';
+        getDisplay.textContent = defaultValue;
+    }
+};
+
+// Setup addition button
+
+
+// function completes operation on two numbers
 function operate(num1, num2, operator) {
 
     if(operator == '+') {
@@ -50,7 +67,6 @@ function operate(num1, num2, operator) {
 }
 
 // mathematical functions
-
 function add(num1, num2) {
     return num1 + num2;
 }

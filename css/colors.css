@@ -32,3 +32,7 @@ button:hover {
 .equal-sign:hover {
     background-color: #33a0e9;
 }
+
+.ac-sign {
+    background-color: rgb(223, 122, 122);
+}
