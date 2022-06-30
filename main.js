@@ -1,6 +1,17 @@
 
-let displayValue = 0;
+let Calculator = {
+    
+    defaultDisplay: 0,
+    firstNumber: null,
+    secondNumber: null,
+    waitingForFirstNumber: true,
+    waitingForSecondNumber: true,
+    arrayOfValues: [];
+}
 
+
+
+let displayValue = 0;
 let firstNum = null;
 let waitingForSecondNum = true;
 let arrayOfValues = [];
