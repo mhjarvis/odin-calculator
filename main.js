@@ -22,22 +22,41 @@ allNumberButtons.forEach(num => {
     })
 })
 
-// updates display with firstNumber
-function updateDisplay() {
-    let screen = document.querySelector(".main-screen");
-    screen.innerHTML = Calculator.arrayOfValues.join("");
-}
-
 // add event listeners to all operators
 let allOperatorButtons = document.querySelectorAll(".operator");
 
 allOperatorButtons.forEach(op => {
     op.addEventListener("click", () => {
         Calculator.operator = op.value;
+        Calculator.waitingForFirstNumber = false;
+        updateDisplay();
     })
 })
 
+// updates display with firstNumber
+function updateDisplay() {
 
+    let screen = document.querySelector(".main-screen");
+
+    if(Calculator.waitingForFirstNumber == true && Calculator.waitingForSecondNumber == true) {
+        screen.innerHTML = Calculator.arrayOfValues.join("");
+    }
+    if(Calculator.waitingForFirstNumber == false && Calculator.waitingForSecondNumber == true && Calculator.firstNumber == null) {
+        Calculator.firstNumber = Calculator.arrayOfValues.join("");
+        Calculator.arrayOfValues = [];
+        screen.innerHTML = Calculator.firstNumber + " " + Calculator.operator;
+    }
+    if(Calculator.waitingForFirstNumber == false && Calculator.waitingForSecondNumber == true && Calculator.firstNumber != null && Calculator.arrayOfValues.length == 0) {
+        screen.innerHTML = Calculator.firstNumber + " " + Calculator.operator;
+    }
+    if(Calculator.waitingForFirstNumber == false && Calculator.waitingForSecondNumber == true && Calculator.firstNumber != null && Calculator.arrayOfValues.length != 0) {
+        screen.innerHTML = Calculator.firstNumber + " " + Calculator.operator + " " + Calculator.arrayOfValues.join("");
+    }
+
+
+
+
+}
 
 
 
