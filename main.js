@@ -1,4 +1,3 @@
-
 let Calculator = {
     
     defaultDisplay: 0,
@@ -10,6 +9,34 @@ let Calculator = {
 }
 
 console.log(Calculator);
+
+
+// add event listeners to all numbers
+let allNumberButtons = document.querySelectorAll(".number");
+
+allNumberButtons.forEach(num => {
+    num.addEventListener("click", () => {
+        Calculator.arrayOfValues.push(num.value);
+        updateDisplay();
+    })
+})
+
+// updates display with firstNumber
+function updateDisplay() {
+    let screen = document.querySelector(".main-screen");
+    screen.innerHTML = Calculator.arrayOfValues.join("");
+}
+
+
+
+
+
+
+
+
+
+
+
 
 // function completes operation on two numbers
 function operate(num1, num2, operator) {
