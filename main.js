@@ -5,6 +5,7 @@ let Calculator = {
     secondNumber: null,
     waitingForFirstNumber: true,
     waitingForSecondNumber: true,
+    operator: null,
     arrayOfValues: []
 }
 
@@ -27,7 +28,14 @@ function updateDisplay() {
     screen.innerHTML = Calculator.arrayOfValues.join("");
 }
 
+// add event listeners to all operators
+let allOperatorButtons = document.querySelectorAll(".operator");
 
+allOperatorButtons.forEach(op => {
+    op.addEventListener("click", () => {
+        Calculator.operator = op.value;
+    })
+})
 
 
 
