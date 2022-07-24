@@ -8,10 +8,10 @@ let calculator = {
 
 let numberButtons = document.querySelectorAll(".number");
 let screen = document.querySelector(".main-screen");
-
-// event listeners for number buttons
 let allNumberButtons = document.querySelectorAll(".number");
+let allClearButton = document.querySelector(".operator-all-clear");
 
+// event listener and actions for number buttons
 allNumberButtons.forEach(num => {
     num.addEventListener("click", () => {
         inputNumber(num.value);
@@ -19,6 +19,16 @@ allNumberButtons.forEach(num => {
     })
 })
 
+// event listener and actions for all clear button
+allClearButton.addEventListener("click", () => {
+    calculator.displayValue = '0';
+    calculator.firstValue = null;
+    calculator.waitingForSecondValue = false;
+    calculator.operator = null;
+    updateDisplay();
+})
+
+// function to update display number
 function inputNumber(num) {
     if(calculator.displayValue == '0') {
         calculator.displayValue = num;
