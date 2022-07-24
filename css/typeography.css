@@ -4,6 +4,6 @@ h1 {
     font-size: 4em;
 }
 
-.number, .operator {
+.key-wrapper button {
     font-size: 2em;
 }
