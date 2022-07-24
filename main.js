@@ -6,10 +6,11 @@ let calculator = {
     operator: null
 }
 
-let numberButtons = document.querySelectorAll(".number");
 let screen = document.querySelector(".main-screen");
 let allNumberButtons = document.querySelectorAll(".number");
 let allClearButton = document.querySelector(".operator-all-clear");
+let operatorButtons = document.querySelectorAll(".operator-data");
+let equalButton = document.querySelector(".operator-equals");
 
 // event listener and actions for number buttons
 allNumberButtons.forEach(num => {
@@ -17,6 +18,29 @@ allNumberButtons.forEach(num => {
         inputNumber(num.value);
         updateDisplay();
     })
+})
+
+// event listener and actions for operator buttons
+operatorButtons.forEach(op => {
+    op.addEventListener("click", () => {
+        if(calculator.firstValue == null) {
+            calculator.firstValue = calculator.displayValue;
+            calculator.displayValue = '0';
+            calculator.operator = op.value;
+            console.log(calculator.firstValue + " " + calculator.operator);
+        } else {
+            calculator.operator = op.value;
+            console.log(calculator.firstValue + " " + calculator.operator);
+        }
+    })
+})
+
+// event listener and actions for equal button
+equalButton.addEventListener("click", () => {
+    let finalValue = operate(calculator.firstValue, calculator.displayValue, calculator.operator);
+    console.log(finalValue);
+    calculator.displayValue = finalValue;
+    updateDisplay();
 })
 
 // event listener and actions for all clear button
@@ -27,6 +51,7 @@ allClearButton.addEventListener("click", () => {
     calculator.operator = null;
     updateDisplay();
 })
+
 
 // function to update display number
 function inputNumber(num) {
@@ -42,9 +67,39 @@ function updateDisplay() {
     screen.innerHTML = calculator.displayValue;
 }
 
-// All clear display
+// function completes operation on two numbers
+function operate(num1, num2, operator) {
 
+    if (operator == '+') {
+        return add(num1, num2);
+    }
+    if (operator == '-') {
+        return subtract(num1, num2);
+    }
+    if (operator == '*') {
+        return multiply(num1, num2);
+    }
+    if (operator == '/') {
+        return divide(num1, num2);
+    }
+}
 
+// mathematical functions
+function add(num1, num2) {
+    return num1 + num2;
+}
+
+function subtract(num1, num2) {
+    return num1 - num2;
+}
+
+function multiply(num1, num2) {
+    return num1 * num2;
+}
+
+function divide(num1, num2) {
+    return num1 / num2;
+}
 
 
 
