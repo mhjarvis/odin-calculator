@@ -5,6 +5,8 @@ let Calculator = {
     secondNumber: null,
     waitingForFirstNumber: true,
     waitingForSecondNumber: true,
+    waitingOnOperator: true,
+    mainOperator: null,
     operator: null,
     arrayOfValues: []
 }
@@ -44,13 +46,20 @@ function updateDisplay() {
     if(Calculator.waitingForFirstNumber == false && Calculator.waitingForSecondNumber == true && Calculator.firstNumber == null) {
         Calculator.firstNumber = Calculator.arrayOfValues.join("");
         Calculator.arrayOfValues = [];
-        screen.innerHTML = Calculator.firstNumber + " " + Calculator.operator;
+        Calculator.mainOperator = Calculator.operator;
+        screen.innerHTML = Calculator.firstNumber + " " + Calculator.mainOperator;
     }
     if(Calculator.waitingForFirstNumber == false && Calculator.waitingForSecondNumber == true && Calculator.firstNumber != null && Calculator.arrayOfValues.length == 0) {
-        screen.innerHTML = Calculator.firstNumber + " " + Calculator.operator;
+        screen.innerHTML = Calculator.firstNumber + " " + Calculator.mainOperator;
     }
     if(Calculator.waitingForFirstNumber == false && Calculator.waitingForSecondNumber == true && Calculator.firstNumber != null && Calculator.arrayOfValues.length != 0) {
-        screen.innerHTML = Calculator.firstNumber + " " + Calculator.operator + " " + Calculator.arrayOfValues.join("");
+        Calculator.operator = null;
+        screen.innerHTML = Calculator.firstNumber + " " + Calculator.mainOperator + " " + Calculator.arrayOfValues.join("");
+    }
+
+
+    if(Calculator.operator == "=") {
+        screen.innerHTML = operate(Calculator.firstNumber, Calculator.arrayOfValues.join(""), Calculator.mainOperator);
     }
 
 
