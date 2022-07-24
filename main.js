@@ -1,20 +1,55 @@
-let Calculator = {
+let calculator = {
 
-    defaultDisplay: 0,
-    firstNumber: null,
-    secondNumber: null,
-    waitingForFirstNumber: true,
-    waitingForSecondNumber: true,
-    waitingOnOperator: true,
-    operator: null,
-    arrayOfValues: []
+    displayValue: '0',
+    firstValue: null,
+    waitingForSecondValue: false,
+    operator: null
 }
 
+let numberButtons = document.querySelectorAll(".number");
 let screen = document.querySelector(".main-screen");
 
-// add event listeners to all numbers
+// event listeners for number buttons
 let allNumberButtons = document.querySelectorAll(".number");
 
+allNumberButtons.forEach(num => {
+    num.addEventListener("click", () => {
+        inputNumber(num.value);
+        updateDisplay();
+    })
+})
+
+function inputNumber(num) {
+    if(calculator.displayValue == '0') {
+        calculator.displayValue = num;
+    } else {
+        calculator.displayValue = calculator.displayValue + num;
+    }
+}
+
+// updates display
+function updateDisplay() {
+    screen.innerHTML = calculator.displayValue;
+}
+
+// All clear display
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 allNumberButtons.forEach(num => {
     num.addEventListener("click", () => {
         Calculator.arrayOfValues.push(num.value);
@@ -29,7 +64,7 @@ allClear.addEventListener("click", () => {
     Calculator.defaultDisplay = 0;
     Calculator.firstNumber, Calculator.secondNumber = 0;
     Calculator.waitingForFirstNumber, Calculator.waitingForSecondNumber, Calculator.waitingOnOperator = true;
-    Calculator.mainOperator = null;
+    Calculator.mainOperator, Calculator.finalValue = null;
     Calculator.arrayOfValues = [];
     screen.innerHTML = 0;
 })
@@ -40,16 +75,20 @@ let allOperatorButtons = document.querySelectorAll(".operator-data");
 allOperatorButtons.forEach(op => {
     op.addEventListener("click", () => {
         Calculator.operator = (op.value);
+        Calculator.firstNumber = Calculator.arrayOfValues.join("");
+        updateDisplay();
     })
 })
 
 // add event listener to equal sign
+let equalSign = document.querySelector(".operator-equals");
 
-// updates display
-function updateDisplay() {
+equalSign.addEventListener("click", () => {
+    Calculator.secondNumber = Calculator.arrayOfValues.join("");
+    Calculator.finalValue = operate(Calculator.firstNumber, Calculator.secondNumber, Calculator.operator);
+    screen.innerHTML = Calculator.finalValue;
+})
 
-    screen.innerHTML = Calculator.arrayOfValues.join("");
-}
 
 
 
