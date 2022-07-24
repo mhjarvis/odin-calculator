@@ -1,5 +1,5 @@
 let Calculator = {
-    
+
     defaultDisplay: 0,
     firstNumber: null,
     secondNumber: null,
@@ -11,9 +11,6 @@ let Calculator = {
     arrayOfValues: []
 }
 
-console.log(Calculator);
-
-
 // add event listeners to all numbers
 let allNumberButtons = document.querySelectorAll(".number");
 
@@ -23,6 +20,20 @@ allNumberButtons.forEach(num => {
         updateDisplay();
     })
 })
+
+// updates display
+function updateDisplay() {
+
+    let screen = document.querySelector(".main-screen");
+    screen.innerHTML = Calculator.arrayOfValues.join("");
+}
+
+
+
+
+
+
+
 
 // add event listeners to all operators
 let allOperatorButtons = document.querySelectorAll(".operator");
@@ -35,37 +46,6 @@ allOperatorButtons.forEach(op => {
     })
 })
 
-// updates display with firstNumber
-function updateDisplay() {
-
-    let screen = document.querySelector(".main-screen");
-
-    if(Calculator.waitingForFirstNumber == true && Calculator.waitingForSecondNumber == true) {
-        screen.innerHTML = Calculator.arrayOfValues.join("");
-    }
-    if(Calculator.waitingForFirstNumber == false && Calculator.waitingForSecondNumber == true && Calculator.firstNumber == null) {
-        Calculator.firstNumber = Calculator.arrayOfValues.join("");
-        Calculator.arrayOfValues = [];
-        Calculator.mainOperator = Calculator.operator;
-        screen.innerHTML = Calculator.firstNumber + " " + Calculator.mainOperator;
-    }
-    if(Calculator.waitingForFirstNumber == false && Calculator.waitingForSecondNumber == true && Calculator.firstNumber != null && Calculator.arrayOfValues.length == 0) {
-        screen.innerHTML = Calculator.firstNumber + " " + Calculator.mainOperator;
-    }
-    if(Calculator.waitingForFirstNumber == false && Calculator.waitingForSecondNumber == true && Calculator.firstNumber != null && Calculator.arrayOfValues.length != 0) {
-        Calculator.operator = null;
-        screen.innerHTML = Calculator.firstNumber + " " + Calculator.mainOperator + " " + Calculator.arrayOfValues.join("");
-    }
-
-
-    if(Calculator.operator == "=") {
-        screen.innerHTML = operate(Calculator.firstNumber, Calculator.arrayOfValues.join(""), Calculator.mainOperator);
-    }
-
-
-
-
-}
 
 
 
@@ -77,16 +57,16 @@ function updateDisplay() {
 // function completes operation on two numbers
 function operate(num1, num2, operator) {
 
-    if(operator == '+') {
+    if (operator == '+') {
         return add(num1, num2);
     }
-    if(operator == '-') {
+    if (operator == '-') {
         return subtract(num1, num2);
     }
-    if(operator == '*') {
+    if (operator == '*') {
         return multiply(num1, num2);
     }
-    if(operator == '/') {
+    if (operator == '/') {
         return divide(num1, num2);
     }
 }
@@ -213,7 +193,7 @@ function useOperator(value) {
     updateDisplay(temp1);
 } */
 
- 
+
 /*     if(firstNum !== null) {
         console.log("minus");
         let secondNumber = Number(temp.join(""));
@@ -244,4 +224,4 @@ function resetVariables() {
 } */
 
 
- 
+
