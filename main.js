@@ -11,6 +11,8 @@ let Calculator = {
     arrayOfValues: []
 }
 
+let screen = document.querySelector(".main-screen");
+
 // add event listeners to all numbers
 let allNumberButtons = document.querySelectorAll(".number");
 
@@ -24,11 +26,20 @@ allNumberButtons.forEach(num => {
 // updates display
 function updateDisplay() {
 
-    let screen = document.querySelector(".main-screen");
     screen.innerHTML = Calculator.arrayOfValues.join("");
 }
 
+// add event listerner to AC button
+let allClear = document.querySelector(".operator-all-clear");
 
+allClear.addEventListener("click", () => {
+    Calculator.defaultDisplay = 0;
+    Calculator.firstNumber, Calculator.secondNumber = 0;
+    Calculator.waitingForFirstNumber, Calculator.waitingForSecondNumber, Calculator.waitingOnOperator = true;
+    Calculator.mainOperator, Calculator.operator = null;
+    Calculator.arrayOfValues = [];
+    screen.innerHTML = 0;
+})
 
 
 
