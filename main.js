@@ -6,7 +6,6 @@ let Calculator = {
     waitingForFirstNumber: true,
     waitingForSecondNumber: true,
     waitingOnOperator: true,
-    mainOperator: null,
     operator: null,
     arrayOfValues: []
 }
@@ -23,12 +22,6 @@ allNumberButtons.forEach(num => {
     })
 })
 
-// updates display
-function updateDisplay() {
-
-    screen.innerHTML = Calculator.arrayOfValues.join("");
-}
-
 // add event listerner to AC button
 let allClear = document.querySelector(".operator-all-clear");
 
@@ -36,28 +29,27 @@ allClear.addEventListener("click", () => {
     Calculator.defaultDisplay = 0;
     Calculator.firstNumber, Calculator.secondNumber = 0;
     Calculator.waitingForFirstNumber, Calculator.waitingForSecondNumber, Calculator.waitingOnOperator = true;
-    Calculator.mainOperator, Calculator.operator = null;
+    Calculator.mainOperator = null;
     Calculator.arrayOfValues = [];
     screen.innerHTML = 0;
 })
 
-
-
-
-
-
 // add event listeners to all operators
-let allOperatorButtons = document.querySelectorAll(".operator");
+let allOperatorButtons = document.querySelectorAll(".operator-data");
 
 allOperatorButtons.forEach(op => {
     op.addEventListener("click", () => {
-        Calculator.operator = op.value;
-        Calculator.waitingForFirstNumber = false;
-        updateDisplay();
+        Calculator.operator = (op.value);
     })
 })
 
+// add event listener to equal sign
 
+// updates display
+function updateDisplay() {
+
+    screen.innerHTML = Calculator.arrayOfValues.join("");
+}
 
 
 
