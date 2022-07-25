@@ -73,13 +73,10 @@ equalButton.addEventListener("click", () => {
     }
 
     let finalValue = operate(Number(calculator.firstValue, 10), Number(calculator.displayValue, 10), calculator.operator);
-    console.log(finalValue);
     calculator.displayValue = finalValue;
     calculator.firstValue = null;
     calculator.operator = null;
-
     updateDisplay();
-    console.log(calculator);
 })
 
 // event listener and actions for all clear button
@@ -102,11 +99,11 @@ function inputNumber(num) {
 
 // function that updates display
 function updateDisplay() {
+
     let temp = testNumber();
-    if(temp.includes(".")) {
+    if(temp.includes(".")) {                // test for decimal point; remove trailing zero's if applicable
         temp = removeZeros(temp);
     }
-    console.log(typeof(temp));
     screen.innerHTML = temp;
 }
 
