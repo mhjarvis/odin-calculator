@@ -42,12 +42,17 @@ decimalButton.addEventListener("click", () => {
 operatorButtons.forEach(op => {
     op.addEventListener("click", () => {
 
+        // first will execute to move the displayValue to firstValue
         if(calculator.firstValue == null) {
             calculator.firstValue = calculator.displayValue;
             calculator.displayValue = '0';
             calculator.operator = op.value;
+
+        // executes if an operator key is hit repeatedly; updates operator vlue
         } else if(calculator.firstValue != null && calculator.operator != null && calculator.displayValue == '0'){
             calculator.operator = op.value;
+
+        // executes operations without needing the equals key
         } else {
             let tempValue = operate(Number(calculator.firstValue, 10), Number(calculator.displayValue, 10), calculator.operator);
             tempValue = String(tempValue);
@@ -56,11 +61,6 @@ operatorButtons.forEach(op => {
             calculator.firstValue = tempValue;
             calculator.operator = op.value;
             calculator.displayValue = '0';
-            console.log(calculator);
-            
-            //calculator.firstValue = calculator.displayValue;
-            //calculator.displayValue = '0';
-            console.log(calculator);
         }
     })
 })
@@ -68,7 +68,7 @@ operatorButtons.forEach(op => {
 // event listener and actions for equal button
 equalButton.addEventListener("click", () => {
 
-    if(calculator.firstValue == null && calculator.operator == null) {
+    if(calculator.firstValue == null && calculator.operator == null) {     // do nothing if there are no values
         return;
     }
 
