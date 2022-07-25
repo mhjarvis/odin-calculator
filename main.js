@@ -23,6 +23,9 @@ allNumberButtons.forEach(num => {
 // event listener and actions for operator buttons
 operatorButtons.forEach(op => {
     op.addEventListener("click", () => {
+
+        calculator.waitingForSecondValue = true;
+
         if(calculator.firstValue == null) {
             calculator.firstValue = calculator.displayValue;
             calculator.displayValue = '0';
@@ -40,7 +43,11 @@ equalButton.addEventListener("click", () => {
     let finalValue = operate(parseInt(calculator.firstValue, 10), parseInt(calculator.displayValue, 10), calculator.operator);
     console.log(finalValue);
     calculator.displayValue = finalValue;
+    calculator.firstValue = null;
+    calculator.operator = null;
+
     updateDisplay();
+    console.log(calculator);
 })
 
 // event listener and actions for all clear button
@@ -51,7 +58,6 @@ allClearButton.addEventListener("click", () => {
     calculator.operator = null;
     updateDisplay();
 })
-
 
 // function to update display number
 function inputNumber(num) {
