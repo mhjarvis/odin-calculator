@@ -37,7 +37,7 @@ operatorButtons.forEach(op => {
 
 // event listener and actions for equal button
 equalButton.addEventListener("click", () => {
-    let finalValue = operate(calculator.firstValue, calculator.displayValue, calculator.operator);
+    let finalValue = operate(parseInt(calculator.firstValue, 10), parseInt(calculator.displayValue, 10), calculator.operator);
     console.log(finalValue);
     calculator.displayValue = finalValue;
     updateDisplay();
