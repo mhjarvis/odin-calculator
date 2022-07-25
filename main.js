@@ -16,6 +16,7 @@ let equalButton = document.querySelector(".operator-equals");
 allNumberButtons.forEach(num => {
     num.addEventListener("click", () => {
         inputNumber(num.value);
+        console.log(calculator);
         updateDisplay();
     })
 })
@@ -24,16 +25,27 @@ allNumberButtons.forEach(num => {
 operatorButtons.forEach(op => {
     op.addEventListener("click", () => {
 
-        calculator.waitingForSecondValue = true;
-
         if(calculator.firstValue == null) {
             calculator.firstValue = calculator.displayValue;
             calculator.displayValue = '0';
             calculator.operator = op.value;
-            console.log(calculator.firstValue + " " + calculator.operator);
-        } else {
+            console.log(calculator);
+        } else if(calculator.firstValue != null && calculator.operator != null && calculator.displayValue == '0'){
             calculator.operator = op.value;
-            console.log(calculator.firstValue + " " + calculator.operator);
+            console.log(calculator);
+        } else { //else is used for operations that are performed before the equal sign is called
+            let tempValue = operate(parseInt(calculator.firstValue, 10), parseInt(calculator.displayValue, 10), calculator.operator);
+            tempValue = String(tempValue);
+            calculator.displayValue = tempValue;
+            updateDisplay()
+            calculator.firstValue = tempValue;
+            calculator.operator = op.value;
+            calculator.displayValue = '0';
+            console.log(calculator);
+            
+            //calculator.firstValue = calculator.displayValue;
+            //calculator.displayValue = '0';
+            console.log(calculator);
         }
     })
 })
