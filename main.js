@@ -1,39 +1,38 @@
 let calculator = {
-
     displayValue: '0',
     firstValue: null,
     operator: null
 }
 
+// all query selectors used throughout application
 let screen = document.querySelector(".main-screen");
 let allNumberButtons = document.querySelectorAll(".number");
-let allClearButton = document.querySelector(".operator-all-clear");
 let operatorButtons = document.querySelectorAll(".operator-data");
 let equalButton = document.querySelector(".operator-equals");
+let allClearButton = document.querySelector(".operator-all-clear");
 let decimalButton = document.querySelector(".operator-decimal");
 
 // event listener and actions for number buttons
 allNumberButtons.forEach(num => {
     num.addEventListener("click", () => {
-        inputNumber(num.value);
-        console.log(calculator);
-        updateDisplay();
+        inputNumber(num.value);             // append button value to displayValue variable
+        updateDisplay();                    // refresh calculator screen
     })
 })
 
-// event listener for decimal
+// event listener for decimal button
 decimalButton.addEventListener("click", () => {
-    let t1 = calculator.displayValue;
 
-    if(t1.includes(".")) {
-        return;
-    } else {
+    let decimalTemp = calculator.displayValue;
+
+    if(decimalTemp.includes(".")) {             // test to see if displayValue already has a decimal
+        return;                                 // do nothing if true
+    } else {                                    // if no decimal, add decimal and update calculator screen
         if(calculator.displayValue == '0') {
-            inputNumber("0.");
+            inputNumber("0.");                  // used for trailing '0'
             updateDisplay();
         } else {
             inputNumber(".");
-            console.log(calculator);
             updateDisplay();
         }
     }
@@ -47,12 +46,10 @@ operatorButtons.forEach(op => {
             calculator.firstValue = calculator.displayValue;
             calculator.displayValue = '0';
             calculator.operator = op.value;
-            console.log(calculator);
         } else if(calculator.firstValue != null && calculator.operator != null && calculator.displayValue == '0'){
             calculator.operator = op.value;
-            console.log(calculator);
-        } else { //else is used for operations that are performed before the equal sign is called
-            let tempValue = operate(parseInt(calculator.firstValue, 10), parseInt(calculator.displayValue, 10), calculator.operator);
+        } else {
+            let tempValue = operate(Number(calculator.firstValue, 10), Number(calculator.displayValue, 10), calculator.operator);
             tempValue = String(tempValue);
             calculator.displayValue = tempValue;
             updateDisplay()
